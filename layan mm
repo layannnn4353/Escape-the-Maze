@@ -1,0 +1,34 @@
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float jumpforce = 10f;
+    [SerializeField] private LayerMask groundlayer;
+    [SerializeField] private Transform feetpos;
+    [SerializeField] private float groundDistance = 0.25f;
+    [SerializeField] private float jumpTime = 0.3f; 
+
+    private bool isGrounded = false;
+    private bool isjumping = false;
+    private bool jumpTimer;
+    private void Update() {
+        isGrounded = Physics2D.OverlapCircleAll(feetpos.position, groundlayer, (int)groundDistance);
+
+        if (isGrounded && Input.GetButtonDown("jump"))
+        {
+            isjumping = true;
+            rb.velocity = Vector2.up * jumpforce;
+        }
+        if (isjumping && Input.GetButton("jump"))
+        {
+            if (jumpTimer < jumpTime)
+            {
+            }
+            rb.velocity = Vector2.up * jumpforce;
+        }
+    }
+
+
+
+
+
+
+}
